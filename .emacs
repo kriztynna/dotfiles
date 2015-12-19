@@ -7,7 +7,27 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(setq package-list '(flymake-jshint flymake-cursor coffee-mode flymake-coffee haml-mode flymake-haml flymake-ruby projectile projectile-rails helm magit smartparens))
+(setq package-list
+      '(
+	ag
+	flymake-jshint
+	flymake-cursor
+	coffee-mode
+	flymake-coffee
+	haml-mode
+	flymake-haml
+	flymake-ruby
+	projectile
+	projectile-rails
+	helm
+	helm-ag
+	helm-projectile
+	magit
+	sass-mode
+	smartparens
+	yaml-mode
+	zenburn-theme
+	))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
