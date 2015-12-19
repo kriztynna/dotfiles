@@ -3,6 +3,7 @@
  'package-archives
  '("melpa" . "http://melpa.org/packages/")
  t)
+
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -10,6 +11,7 @@
 (setq package-list
       '(
 	ag
+	dash
 	flymake-jshint
 	flymake-cursor
 	coffee-mode
@@ -64,7 +66,7 @@
  '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes
    (quote
-    ("f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default))))
+    ("85c59044bd46f4a0deedc8315ffe23aa46d2a967a81750360fb8600b53519b8a" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
