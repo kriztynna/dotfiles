@@ -40,11 +40,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- (if window-system
-   '(custom-enabled-themes (quote (zenburn)))
-   '(custom-safe-themes
-     (quote
-      ("f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))))
+ '(coffee-tab-width 2)
+ '(custom-enabled-themes (quote (zenburn)))
+ '(custom-safe-themes
+   (quote
+    ("f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -71,3 +71,12 @@
 (tool-bar-mode -1)
 
 (global-set-key (kbd "s-p") 'helm-projectile)
+
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(global-set-key (kbd "C-x b")   #'helm-mini)
+(global-set-key (kbd "C-x C-b") #'helm-buffers-list)
+(global-set-key (kbd "C-x C-m") #'helm-M-x)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(global-set-key (kbd "C-x C-r") #'helm-recentf)
