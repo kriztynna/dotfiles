@@ -8,17 +8,15 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+(defvar package-list)
 (setq package-list
       '(
 	ag
 	dash
-	flymake-jshint
-	flymake-cursor
+	flycheck ;; npm install -g coffee-script coffeelint
+	flycheck-typescript-tslint ;; npm install -g tslint
 	coffee-mode
-	flymake-coffee
 	haml-mode
-	flymake-haml
-	flymake-ruby
 	projectile
 	projectile-rails
 	helm
@@ -27,26 +25,23 @@
 	magit
 	sass-mode
 	smartparens
+	tide
+	typescript-mode
 	yaml-mode
 	zenburn-theme
 	))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
 
-(require 'flymake-jshint)
-(add-hook 'js-mode-hook 'flymake-jshint-load)
-(require 'flymake-coffee)
-(add-hook 'coffee-mode-hook 'flymake-coffee-load)
-(require 'flymake-haml)
-(add-hook 'haml-mode-hook 'flymake-haml-load)
-(require 'flymake-ruby)
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(require 'flymake-cursor)
-
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
+(add-hook 'typescript-mode-hook 'tide-setup)
 
 (require 'helm-config)
 (require 'smartparens-config)
@@ -57,6 +52,11 @@
   (sp-local-pair "<" ">")
      (sp-local-pair "<%" "%>"))
 
+(setq-default indent-tabs-mode nil
+	      c-basic-offset 2
+	      tab-width 2
+	      )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -66,7 +66,8 @@
  '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes
    (quote
-    ("85c59044bd46f4a0deedc8315ffe23aa46d2a967a81750360fb8600b53519b8a" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default))))
+    ("85c59044bd46f4a0deedc8315ffe23aa46d2a967a81750360fb8600b53519b8a" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
+ '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
