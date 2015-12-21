@@ -11,33 +11,32 @@
 (defvar package-list)
 (setq package-list
       '(
-	ag
-	dash
-	flycheck ;; npm install -g coffee-script coffeelint
-	flycheck-typescript-tslint ;; npm install -g tslint
-	coffee-mode
-	haml-mode
-	projectile
-	projectile-rails
-	helm
-	helm-ag
-	helm-projectile
-	magit
-	sass-mode
-	smartparens
-	tide
-	typescript-mode
-	yaml-mode
-	zenburn-theme
-	))
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
+        ag
+        flycheck ;; npm install -g coffee-script coffeelint
+        flycheck-typescript-tslint ;; npm install -g tslint
+        coffee-mode
+        haml-mode
+        projectile
+        projectile-rails
+        helm
+        helm-ag
+        helm-projectile
+        magit
+        sass-mode
+        smartparens
+        tide
+        typescript-mode
+        yaml-mode
+        zenburn-theme
+        ))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
