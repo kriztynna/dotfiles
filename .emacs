@@ -1,3 +1,7 @@
+;;; package --- Summary
+;;; Commentary:
+
+;;; Code:
 (require 'package)
 (add-to-list
  'package-archives
@@ -23,6 +27,7 @@
         helm-projectile
         magit
         sass-mode
+        scss-mode
         smartparens
         tide
         typescript-mode
@@ -33,9 +38,6 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
-
-
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (eval-after-load 'flycheck
@@ -77,7 +79,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-
 (defun fontify-frame (frame)
   (interactive)
   (if window-system
@@ -96,7 +97,6 @@
 (tool-bar-mode -1)
 
 (global-set-key (kbd "s-p") 'helm-projectile)
-
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
