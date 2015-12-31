@@ -53,6 +53,10 @@
 (defvar ispell-program-name)
 (setq ispell-program-name "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
 
+;;; flycheck scss executable
+(defvar flycheck-scss-executable)
+(setq flycheck-scss-executable "/Users/cristinacolon/.rvm/gems/ruby-2.2.3/gems/sass-3.4.20/bin/scss")
+
 (require 'helm-config)
 (require 'smartparens-config)
 (require 'smartparens-ruby)
