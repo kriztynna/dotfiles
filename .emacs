@@ -39,6 +39,8 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
+
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (add-hook 'typescript-mode-hook 'tide-setup)
@@ -103,3 +105,5 @@
 (global-set-key (kbd "C-x C-m") #'helm-M-x)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (global-set-key (kbd "C-x C-r") #'helm-recentf)
+
+;;; .emacs ends here
