@@ -47,6 +47,12 @@
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (add-hook 'typescript-mode-hook 'tide-setup)
 
+;;; ispell setup
+;;; Dependencies:
+;;; brew install ispell
+(defvar ispell-program-name)
+(setq ispell-program-name "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
+
 (require 'helm-config)
 (require 'smartparens-config)
 (require 'smartparens-ruby)
@@ -86,7 +92,7 @@
         (if (> (x-display-pixel-width) 2000)
             (set-face-attribute 'default nil :height 135) ;; cinema
           (set-face-attribute 'default nil :height 115))))
- )
+  )
 
 ;; Fontify current frame
 (fontify-frame nil)
