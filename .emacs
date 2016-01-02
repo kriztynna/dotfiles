@@ -1,3 +1,7 @@
+;;; package --- Summary
+;;; Commentary:
+
+;;; Code:
 (require 'package)
 (add-to-list
  'package-archives
@@ -11,33 +15,33 @@
 (defvar package-list)
 (setq package-list
       '(
-	ag
-	dash
-	flycheck ;; npm install -g coffee-script coffeelint
-	flycheck-typescript-tslint ;; npm install -g tslint
-	coffee-mode
-	haml-mode
-	projectile
-	projectile-rails
-	helm
-	helm-ag
-	helm-projectile
-	magit
-	sass-mode
-	smartparens
-	tide
-	typescript-mode
-	yaml-mode
-	zenburn-theme
-	))
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
+        ag
+        flycheck ;; npm install -g coffee-script coffeelint
+        flycheck-typescript-tslint ;; npm install -g tslint
+        coffee-mode
+        haml-mode
+        projectile
+        projectile-rails
+        helm
+        helm-ag
+        helm-projectile
+        magit
+        sass-mode
+        scss-mode
+        smartparens
+        tide
+        typescript-mode
+        yaml-mode
+        zenburn-theme
+        ))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
 (require 'projectile-rails)
 (projectile-global-mode)
@@ -46,6 +50,16 @@
 (setq projectile-switch-project-action 'helm-projectile)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (add-hook 'typescript-mode-hook 'tide-setup)
+
+;;; ispell setup
+;;; Dependencies:
+;;; brew install ispell
+(defvar ispell-program-name)
+(setq ispell-program-name "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
+
+;;; flycheck scss executable
+(defvar flycheck-scss-executable)
+(setq flycheck-scss-executable "/Users/cristinacolon/.rvm/gems/ruby-2.2.3/gems/sass-3.4.20/bin/scss")
 
 (require 'helm-config)
 (require 'smartparens-config)
@@ -79,7 +93,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-
 (defun fontify-frame (frame)
   (interactive)
   (if window-system
@@ -87,7 +100,7 @@
         (if (> (x-display-pixel-width) 2000)
             (set-face-attribute 'default nil :height 135) ;; cinema
           (set-face-attribute 'default nil :height 115))))
- )
+  )
 
 ;; Fontify current frame
 (fontify-frame nil)
@@ -99,7 +112,6 @@
 
 (global-set-key (kbd "s-p") 'helm-projectile)
 
-
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (global-set-key (kbd "C-x b")   #'helm-mini)
@@ -107,3 +119,5 @@
 (global-set-key (kbd "C-x C-m") #'helm-M-x)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (global-set-key (kbd "C-x C-r") #'helm-recentf)
+
+;;; .emacs ends here
