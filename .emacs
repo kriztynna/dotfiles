@@ -54,10 +54,11 @@
 ;;; ispell setup
 ;;; Dependencies:
 ;;; brew install ispell
-(defvar ispell-program-name)
-(setq ispell-program-name "/usr/local/Cellar/ispell/3.4.00/bin/ispell")
+(add-to-list 'exec-path "/usr/local/bin") ;;; make it work in window emacs launched from the dock
 
 ;;; flycheck scss executable
+;;; Dependencies
+;;; gem install sass
 (defvar flycheck-scss-executable)
 (setq flycheck-scss-executable "/Users/cristinacolon/.rvm/gems/ruby-2.2.3/gems/sass-3.4.20/bin/scss")
 
