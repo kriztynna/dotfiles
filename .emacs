@@ -51,14 +51,21 @@
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (add-hook 'typescript-mode-hook 'tide-setup)
 
-;;; ispell setup
-;;; Dependencies:
-;;; brew install ispell
-(add-to-list 'exec-path "/usr/local/bin") ;;; make it work in window emacs launched from the dock
+;; ispell setup
+;; Dependencies:
+;; brew install ispell
+;; This last part makes it so that ispell works in emacs launched from the dock
+(add-to-list 'exec-path "/usr/local/bin")
+;; To add a Spanish-language dictionary, get the COES dictionary from
+;; http://www.datsi.fi.upm.es/~coes/
+;; Follow the installation instructions, then change the names of the resulting
+;; files from espa~nol.hash and espa~nol.aff to castellano.hash and castellano.aff
+;; Ispell has a built-in list of dictionaries that it searches for, and it looks
+;; for castellano rather than espa~nol, so it won't load the files until renamed.
 
-;;; flycheck scss executable
-;;; Dependencies
-;;; gem install sass
+;; flycheck scss executable
+;; Dependencies
+;; gem install sass
 (defvar flycheck-scss-executable)
 (setq flycheck-scss-executable "/Users/cristinacolon/.rvm/gems/ruby-2.2.3/gems/sass-3.4.20/bin/scss")
 
