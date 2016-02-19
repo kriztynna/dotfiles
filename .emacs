@@ -57,6 +57,8 @@
 ;; brew install ispell
 ;; This last part makes it so that ispell works in emacs launched from the dock
 (add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/usr/bin")
+
 ;; To add a Spanish-language dictionary, get the COES dictionary from
 ;; http://www.datsi.fi.upm.es/~coes/
 ;; Follow the installation instructions, then change the names of the resulting
