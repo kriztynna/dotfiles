@@ -16,6 +16,7 @@
 (setq package-list
       '(
         ag
+        auto-complete
         flycheck ;; npm install -g coffee-script coffeelint
         flycheck-typescript-tslint ;; npm install -g tslint
         coffee-mode
@@ -39,6 +40,8 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+(ac-config-default)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (eval-after-load 'flycheck
