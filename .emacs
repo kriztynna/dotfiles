@@ -19,8 +19,10 @@
         auto-complete
         flycheck ;; npm install -g coffee-script coffeelint
         flycheck-typescript-tslint ;; npm install -g tslint
+        flycheck-haskell
         coffee-mode
         haml-mode
+        haskell-mode
         projectile
         projectile-rails
         helm
