@@ -92,6 +92,9 @@
 	      tab-width 2
 	      )
 
+;; show line numbers on all files
+(global-linum-mode t)
+
 (defvar css-indent-offset)
 (setq css-indent-offset 2)
 
