@@ -106,6 +106,9 @@
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+;; keybinding to open magit
+(global-set-key (kbd "C-c g") 'magit-status)
+
 (defvar css-indent-offset)
 (setq css-indent-offset 2)
 
