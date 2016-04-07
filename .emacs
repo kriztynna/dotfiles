@@ -29,6 +29,7 @@
         helm-ag
         helm-projectile
         magit
+        rspec-mode
         rvm
         sass-mode
         scss-mode
@@ -141,5 +142,7 @@
 
 (require 'rvm)
 (rvm-use-default) ;; use rvm's default ruby for the current Emacs session
+
+(require 'rspec-mode)
 
 ;;; .emacs ends here
