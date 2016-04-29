@@ -156,4 +156,6 @@
 
 (require 'rspec-mode)
 
+(setq require-final-newline t)
+
 ;;; .emacs ends here
