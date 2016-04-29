@@ -72,6 +72,9 @@
 ;; Ispell has a built-in list of dictionaries that it searches for, and it looks
 ;; for castellano rather than espa~nol, so it won't load the files until renamed.
 
+(defvar flycheck-scss-lintrc)
+(setq flycheck-scss-lintrc "/Users/cristinacolon/dotfiles/.scss-lint.yml")
+
 (require 'helm-config)
 (require 'smartparens-config)
 (require 'smartparens-ruby)
