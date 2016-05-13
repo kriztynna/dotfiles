@@ -30,7 +30,6 @@
         helm-projectile
         magit
         rspec-mode
-        rvm
         sass-mode
         scss-mode
         smartparens
@@ -153,9 +152,6 @@
 (global-set-key (kbd "C-x C-m") #'helm-M-x)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (global-set-key (kbd "C-x C-r") #'helm-recentf)
-
-(require 'rvm)
-(rvm-use-default) ;; use rvm's default ruby for the current Emacs session
 
 (require 'rspec-mode)
 
