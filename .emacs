@@ -29,6 +29,7 @@
         helm-ag
         helm-projectile
         magit
+        rbenv
         rspec-mode
         sass-mode
         scss-mode
@@ -42,6 +43,10 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+(require 'rbenv)
+(setq rbenv-modeline-function 'rbenv--modeline-plain) ;; remove red color from ruby version display
+(global-rbenv-mode)
 
 (ac-config-default)
 
