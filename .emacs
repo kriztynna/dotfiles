@@ -23,6 +23,7 @@
         coffee-mode
         haml-mode
         haskell-mode
+        inf-ruby
         projectile
         projectile-rails
         helm
@@ -112,6 +113,9 @@
 
 (defvar css-indent-offset)
 (setq css-indent-offset 2)
+
+;; enable debugging in rspec mode
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
