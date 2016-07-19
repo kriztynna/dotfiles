@@ -30,6 +30,7 @@
         helm
         helm-ag
         helm-projectile
+        multiple-cursors
         magit
         rbenv
         rspec-mode
@@ -127,6 +128,13 @@
 
 ;; enable debugging in rspec mode
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
+
+;; multiple cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
