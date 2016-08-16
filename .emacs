@@ -48,6 +48,20 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;; ispell setup
+;; Dependencies:
+;; brew install ispell
+;; This last part makes it so that ispell works in emacs launched from the dock
+(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/usr/bin")
+
+;; To add a Spanish-language dictionary, get the COES dictionary from
+;; http://www.datsi.fi.upm.es/~coes/
+;; Follow the installation instructions, then change the names of the resulting
+;; files from espa~nol.hash and espa~nol.aff to castellano.hash and castellano.aff
+;; Ispell has a built-in list of dictionaries that it searches for, and it looks
+;; for castellano rather than espa~nol, so it won't load the files until renamed.
+
 (require 'rbenv)
 (setq rbenv-modeline-function 'rbenv--modeline-plain) ;; remove red color from ruby version display
 (global-rbenv-mode)
@@ -57,6 +71,9 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
+
+(defvar flycheck-scss-lintrc)
+(setq flycheck-scss-lintrc "/Users/cristinacolon/dotfiles/.scss-lint.yml")
 
 (require 'projectile-rails)
 (projectile-global-mode)
@@ -76,24 +93,6 @@
   )
 (add-hook 'js2-mode-hook 'rli-add-jasmine-externs)
 
-;; ispell setup
-;; Dependencies:
-;; brew install ispell
-;; This last part makes it so that ispell works in emacs launched from the dock
-(add-to-list 'exec-path "/usr/local/bin")
-(add-to-list 'exec-path "/usr/bin")
-
-;; To add a Spanish-language dictionary, get the COES dictionary from
-;; http://www.datsi.fi.upm.es/~coes/
-;; Follow the installation instructions, then change the names of the resulting
-;; files from espa~nol.hash and espa~nol.aff to castellano.hash and castellano.aff
-;; Ispell has a built-in list of dictionaries that it searches for, and it looks
-;; for castellano rather than espa~nol, so it won't load the files until renamed.
-
-(defvar flycheck-scss-lintrc)
-(setq flycheck-scss-lintrc "/Users/cristinacolon/dotfiles/.scss-lint.yml")
-
-(require 'helm-config)
 (require 'smartparens-config)
 (require 'smartparens-ruby)
 (smartparens-global-mode)
@@ -102,13 +101,39 @@
   (sp-local-pair "<" ">")
      (sp-local-pair "<%" "%>"))
 
+;; show line numbers on all files
+(global-linum-mode t)
+
+;; keybinding to open magit
+(global-set-key (kbd "C-c g") 'magit-status)
+
+(defvar css-indent-offset)
+(setq css-indent-offset 2)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq require-final-newline t)
 (setq-default indent-tabs-mode nil
 	      c-basic-offset 2
 	      tab-width 2
 	      )
 
-;; show line numbers on all files
-(global-linum-mode t)
+(require 'helm-config)
+(global-set-key (kbd "s-p") 'helm-projectile)
+(global-set-key (kbd "C-x b")   #'helm-mini)
+(global-set-key (kbd "C-x C-b") #'helm-buffers-list)
+(global-set-key (kbd "C-x C-m") #'helm-M-x)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(global-set-key (kbd "C-x C-r") #'helm-recentf)
+
+(require 'rspec-mode)
+;; enable debugging in rspec mode
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+
+;; multiple cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; copy buffer-file-name to clipboard
 (defun c ()
@@ -121,14 +146,20 @@
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
-;; keybinding to open magit
-(global-set-key (kbd "C-c g") 'magit-status)
+(defun fontify-frame (frame)
+  (interactive)
+  (if window-system
+      (progn
+        (if (> (x-display-pixel-width) 2000)
+            (set-face-attribute 'default nil :height 135) ;; cinema
+          (set-face-attribute 'default nil :height 115))))
+  )
 
-(defvar css-indent-offset)
-(setq css-indent-offset 2)
+;; Fontify current frame
+(fontify-frame nil)
 
-;; enable debugging in rspec mode
-(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+;; Fontify any future frames
+(push 'fontify-frame after-make-frame-functions)
 
 ;; multiple cursors
 (require 'multiple-cursors)
@@ -137,6 +168,8 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-q") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(tool-bar-mode -1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -155,36 +188,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(defun fontify-frame (frame)
-  (interactive)
-  (if window-system
-      (progn
-        (if (> (x-display-pixel-width) 2000)
-            (set-face-attribute 'default nil :height 135) ;; cinema
-          (set-face-attribute 'default nil :height 115))))
-  )
-
-;; Fontify current frame
-(fontify-frame nil)
-
-;; Fontify any future frames
-(push 'fontify-frame after-make-frame-functions)
-
-(tool-bar-mode -1)
-
-(global-set-key (kbd "s-p") 'helm-projectile)
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(global-set-key (kbd "C-x b")   #'helm-mini)
-(global-set-key (kbd "C-x C-b") #'helm-buffers-list)
-(global-set-key (kbd "C-x C-m") #'helm-M-x)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
-(global-set-key (kbd "C-x C-r") #'helm-recentf)
-
-(require 'rspec-mode)
-
-(setq require-final-newline t)
 
 ;;; .emacs ends here
