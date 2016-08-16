@@ -32,6 +32,7 @@
         helm-projectile
         multiple-cursors
         magit
+        moe-theme
         rbenv
         rspec-mode
         sass-mode
@@ -171,16 +172,25 @@
 
 (tool-bar-mode -1)
 
+(require 'moe-theme)
+(require 'moe-theme-switcher)
+(defvar calendar-latitude)
+(defvar calendar-longitude)
+(setq calendar-latitude +41)
+(setq calendar-longitude -74)
+;; M-x moe-theme-switcher-disable to stop auto-switching
+;; M-x moe-theme-auto-switch to re-enable
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2)
- '(custom-enabled-themes (quote (zenburn)))
+ '(custom-enabled-themes nil)
  '(custom-safe-themes
    (quote
-    ("f3d6a49e3f4491373028eda655231ec371d79d6d2a628f08d5aa38739340540b" "316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" "85c59044bd46f4a0deedc8315ffe23aa46d2a967a81750360fb8600b53519b8a" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
+    ("74278d14b7d5cf691c4d846a4bbf6e62d32104986f104c1e61f718f9669ec04b" "cfa7053f155661faa33ef648f55d524eb97854f8f0ff9ff91a08b3ba47a9a25f" "0d70e2ae0e2b0933ec7eb9a93db20ee6329da95d1f87b7bb27b520e90a3ee182" "f3d6a49e3f4491373028eda655231ec371d79d6d2a628f08d5aa38739340540b" "316d29f8cd6ca980bf2e3f1c44d3a64c1a20ac5f825a167f76e5c619b4e92ff4" "85c59044bd46f4a0deedc8315ffe23aa46d2a967a81750360fb8600b53519b8a" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
  '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
