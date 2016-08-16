@@ -171,14 +171,6 @@
 ;; Fontify any future frames
 (push 'fontify-frame after-make-frame-functions)
 
-;; multiple cursors
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-q") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
 (tool-bar-mode -1)
 
 (custom-set-variables
