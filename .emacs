@@ -173,6 +173,13 @@
 
 (tool-bar-mode -1)
 
+(require 'moe-theme)
+(require 'moe-theme-switcher)
+(defvar calendar-latitude)
+(defvar calendar-longitude)
+(setq calendar-latitude +41)
+(setq calendar-longitude -74)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
