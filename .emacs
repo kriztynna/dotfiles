@@ -37,6 +37,7 @@
         sass-mode
         scss-mode
         smartparens
+        sml-mode
         tide
         typescript-mode
         yaml-mode
