@@ -64,6 +64,15 @@
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (add-hook 'typescript-mode-hook 'tide-setup)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(defvar js2-additional-externs)
+(defun rli-add-jasmine-externs()
+  (when (string-match "_spec.js" (buffer-file-name))
+    (setq js2-additional-externs
+	  '("describe" "xdescribe" "fdescribe" "it" "xit" "fit" "context" "xcontext" "fcontext" "expect" "spyOn" "jasmine"
+	    "beforeEach" "runs" "waits" "waitsFor" "afterEach"
+	    "module" "inject")))
+  )
+(add-hook 'js2-mode-hook 'rli-add-jasmine-externs)
 
 ;; ispell setup
 ;; Dependencies:
