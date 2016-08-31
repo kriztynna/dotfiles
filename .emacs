@@ -90,7 +90,7 @@
     (setq js2-additional-externs
 	  '("describe" "xdescribe" "fdescribe" "it" "xit" "fit" "context" "xcontext" "fcontext" "expect" "spyOn" "jasmine"
 	    "beforeEach" "runs" "waits" "waitsFor" "afterEach"
-	    "module" "inject")))
+	    "module" "inject" "angular")))
   )
 (add-hook 'js2-mode-hook 'rli-add-jasmine-externs)
 
