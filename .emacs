@@ -200,3 +200,4 @@
  )
 
 ;;; .emacs ends here
+(put 'downcase-region 'disabled nil)
