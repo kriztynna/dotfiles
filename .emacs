@@ -172,15 +172,6 @@
 
 (tool-bar-mode -1)
 
-(require 'moe-theme)
-(require 'moe-theme-switcher)
-(defvar calendar-latitude)
-(defvar calendar-longitude)
-(setq calendar-latitude +41)
-(setq calendar-longitude -74)
-;; M-x moe-theme-switcher-disable to stop auto-switching
-;; M-x moe-theme-auto-switch to re-enable
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -198,6 +189,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(require 'moe-theme)
+(require 'moe-theme-switcher)
+(defvar calendar-latitude)
+(defvar calendar-longitude)
+(setq calendar-latitude +41)
+(setq calendar-longitude -74)
+;; M-x moe-theme-switcher-disable to stop auto-switching
+;; M-x moe-theme-auto-switch to re-enable
 
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
