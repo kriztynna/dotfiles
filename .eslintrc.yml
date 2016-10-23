@@ -1,1 +1,23 @@
 extends: eslint:recommended
+
+ecmaFeatures:
+  modules: true
+
+parserOptions:
+  sourceType: "module"
+
+env:
+  es6: true
+  browser: true
+  node: true
+  jasmine: true
+
+globals:
+  _: true
+  $: true
+  moment: true
+  angular: true
+  context: true
+  inject: true
+  google: true
+  describe: false
