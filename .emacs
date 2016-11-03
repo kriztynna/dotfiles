@@ -19,8 +19,6 @@
         auto-complete
         evil
         flycheck ;; npm install -g coffee-script coffeelint
-        flycheck-typescript-tslint ;; npm install -g tslint
-        flycheck-haskell
         coffee-mode
         haml-mode
         haskell-mode
@@ -33,37 +31,21 @@
         helm-projectile
         multiple-cursors
         magit
-        moe-theme
         rbenv
         rspec-mode
         sass-mode
         scss-mode
         smartparens
-        sml-mode
         solarized-theme
-        tide
-        typescript-mode
         yaml-mode
-        zenburn-theme
         ))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
 
-;; ispell setup
-;; Dependencies:
-;; brew install ispell
-;; This last part makes it so that ispell works in emacs launched from the dock
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "/usr/bin")
-
-;; To add a Spanish-language dictionary, get the COES dictionary from
-;; http://www.datsi.fi.upm.es/~coes/
-;; Follow the installation instructions, then change the names of the resulting
-;; files from espa~nol.hash and espa~nol.aff to castellano.hash and castellano.aff
-;; Ispell has a built-in list of dictionaries that it searches for, and it looks
-;; for castellano rather than espa~nol, so it won't load the files until renamed.
 
 (require 'rbenv)
 (setq rbenv-modeline-function 'rbenv--modeline-plain) ;; remove red color from ruby version display
@@ -72,8 +54,6 @@
 (ac-config-default)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
 (require 'flycheck)
 (defvar html-htmlhint)
@@ -140,13 +120,6 @@
 ;; enable debugging in rspec mode
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 
-;; multiple cursors
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
 ;; copy buffer-file-name to clipboard
 (defun c ()
   "Copy the current buffer file name to the clipboard."
@@ -187,6 +160,7 @@
 (defvar evil-toggle-key)
 (setq evil-toggle-key "C-`")
 (require 'evil)
+(evil-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -206,14 +180,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(require 'moe-theme)
-(require 'moe-theme-switcher)
-(defvar calendar-latitude)
-(defvar calendar-longitude)
-(setq calendar-latitude +41)
-(setq calendar-longitude -74)
-;; M-x moe-theme-switcher-disable to stop auto-switching
-;; M-x moe-theme-auto-switch to re-enable
+(load-theme 'solarized-dark t)
 
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
