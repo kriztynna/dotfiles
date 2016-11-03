@@ -73,6 +73,15 @@
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-typescript-tslint-setup))
 
+(require 'flycheck)
+(defvar html-htmlhint)
+(flycheck-define-checker html-htmlhint "Htmlhint!"
+                         :command ("htmlhint" "-f" "checkstyle")
+                         :error-parser flycheck-parse-checkstyle
+                         :modes (html-mode nxhtml-mode)) ;; npm install htmlhint -g
+(add-to-list 'flycheck-checkers 'html-htmlhint)
+(setq-default flycheck-disabled-checkers '(html-tidy))
+
 (defvar flycheck-scss-lintrc)
 (setq flycheck-scss-lintrc "/Users/cristinacolon/dotfiles/.scss-lint.yml")
 
