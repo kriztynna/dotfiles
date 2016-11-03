@@ -17,6 +17,7 @@
       '(
         ag
         auto-complete
+        evil
         flycheck ;; npm install -g coffee-script coffeelint
         flycheck-typescript-tslint ;; npm install -g tslint
         flycheck-haskell
@@ -180,6 +181,11 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (tool-bar-mode -1)
+
+(global-unset-key (kbd "C-z"))
+(defvar evil-toggle-key)
+(setq evil-toggle-key "C-`")
+(require 'evil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
